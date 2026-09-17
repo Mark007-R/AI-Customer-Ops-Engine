@@ -33,6 +33,7 @@ from typing import Any
 
 import streamlit as st
 
+from ui import ui_chrome, ui_theme
 from ui.approver_data import (
     ApproverActionError,
     approve,
@@ -55,6 +56,11 @@ def _set_page_config() -> None:
         layout="wide",
         initial_sidebar_state="expanded",
     )
+    # mark.dev paper ground, Fraunces/Inter/JetBrains Mono, teal accent. The
+    # same base colours are mirrored in .streamlit/config.toml, which is the
+    # only way to reach widgets CSS cannot touch — change one, change both.
+    ui_theme.apply_theme()
+    ui_chrome.apply_app_css()
 
 
 def _sidebar() -> dict[str, Any]:
